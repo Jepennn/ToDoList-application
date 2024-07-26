@@ -47,8 +47,8 @@ h1{
     margin: 10px 0px 20px 0px;
     position: relative; 
 }
-
 input[type="text"] {
+    color: var(--text-color);
     flex-grow: 1;
     width: 100%;
     padding: 12px 10px;
@@ -57,7 +57,11 @@ input[type="text"] {
     border: solid 2px var(--secondary-color);
     background-color: var(--bakground);
 }
-
+input[type="text"]:focus {
+    outline: none; /* Removes standard effect when writing in field */
+    border-color: var(--secondary-color);
+    opacity: 0.8;
+}
 #todo-form button {
     position: absolute; 
     right: 1px;  
@@ -68,5 +72,6 @@ input[type="text"] {
     border: none;
     flex-shrink: 0;
     background-color: var(--accent-color);
+    cursor: pointer;
 }
 
