@@ -34,7 +34,7 @@ h1{
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     padding: 10px;
     border-radius: 10px;
     /* background-color: var(--primary-color); */
@@ -74,4 +74,33 @@ input[type="text"]:focus {
     background-color: var(--accent-color);
     cursor: pointer;
 }
-
+#todo-form button:hover {
+    background-color: #00e6b4a7;
+}
+#todo-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+    border-radius: 15px;
+}
+.todo{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    margin: 5px 0px;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    align-items: center;
+    position: relative;
+}
+.delete-todo{
+    position: absolute;
+    right: 10px;
+    border: none;
+    background-color: transparent;   
+    cursor: pointer;
+}
+.delete-todo svg:hover {
+    fill:rgba(255, 0, 0, 0.694);
+}
