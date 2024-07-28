@@ -1,7 +1,7 @@
 :root{
     --bakground: #101114;
     --primary-color: #1c1d20;
-    --secondary-color: #393844;
+    --secondary-color: #42414e;
     --accent-color: #00ffc4;
     --text-color: #f9f9f9;
 }
@@ -24,7 +24,7 @@ body{
     height: 100vh;
 }
 h1{
-    font-size: 2.3rem;
+    font-size: 3.2rem;
     margin: 50px 0px 10px 0px;
     padding: 10px;
     color: var(--accent-color);
@@ -51,9 +51,8 @@ input[type="text"] {
     color: var(--text-color);
     flex-grow: 1;
     width: 100%;
-    padding: 12px 10px;
+    padding: 15px 70px 15px 15px; /* Adding extra space so the button fits*/
     border-radius: 25px ;
-    padding-right: 70px; /* Adding extra space so the button fits*/ 
     border: solid 2px var(--secondary-color);
     background-color: var(--bakground);
 }
@@ -104,3 +103,38 @@ input[type="text"]:focus {
 .delete-todo svg:hover {
     fill:rgba(255, 0, 0, 0.694);
 }
+
+/* design for checkbox start here */
+input[type="checkbox"] {
+    display: none;
+}
+.custom-checkbox {
+    display: flex;
+    cursor: pointer;
+    margin-right: 8px;
+    background-color: var(--primary-color);
+    border-radius: 50px;
+}
+.custom-checkbox svg{
+    background-color: var(--primary-color);
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    transition: 0.4s;
+}
+.custom-checkbox svg path {
+    fill: transparent;
+}
+input[type="checkbox"]:checked + .custom-checkbox svg path {
+    fill: var(--secondary-color);
+}
+input[type="checkbox"]:checked + .custom-checkbox svg {
+    background-color: var(--accent-color);
+}
+input[type="checkbox"]:checked + .custom-checkbox + .todo-text {
+    text-decoration: line-through;
+    color: var(--secondary-color);
+}
+/* design for checkbox start here */
+
+
+
