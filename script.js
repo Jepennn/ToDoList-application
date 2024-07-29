@@ -4,20 +4,18 @@ const input = document.getElementById('todo-input');
 const todoListToday = document.getElementById('todo-list-today');
 const addButton = document.querySelector('button[type="submit"]');
 
+const deleteButtons = document.querySelectorAll('.delete-todo');
+
+
 allTodos = [];
 
-todoForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  addTodo();
-  clearInputField();
-});
 
 addTodo = () => {
     const todoText = input.value.trim();
     if (todoText.length > 0) {
       allTodos.push(todoText);
       updateTodoList();
-    }  
+    }   
 }
 
 //Helper function to add a new todo to the list
@@ -38,6 +36,7 @@ updateTodoList = () => {
 
 createTodoLI = (todo, todoIndex) => {
     const li = document.createElement('li');
+    li.setAttribute('data-index', todoIndex);
 
     li.innerHTML = `<li class="todo">
     <input type="checkbox" id="todo-${todoIndex}">
@@ -55,3 +54,36 @@ createTodoLI = (todo, todoIndex) => {
 
     return li;
 }
+
+//Function to delete a todo from the list
+deleteTodo = (index) => {
+    allTodos.splice(index, 1);
+    updateTodoList();
+}
+
+//Clear input filed after added task
+clearInputField = () => {
+    input.value = '';
+  }
+
+
+/*Event listener for the form submission and todo items*/
+
+//Event listener for adding a todo
+todoForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    addTodo();
+    clearInputField();
+  });
+
+//Event listener with eventdelegation for delete todo item
+todoListToday.addEventListener('click', (e) => {
+    if (e.target.closest('.delete-todo')) {
+        const todoItem = e.target.closest('.todo');
+        const todoIndex = todoItem.getAttribute('data-index');
+        deleteTodo(todoIndex);
+    }
+});
+
+
+  
