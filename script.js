@@ -4,11 +4,19 @@ const input = document.getElementById('todo-input');
 const todoListToday = document.getElementById('todo-list-today');
 const addButton = document.querySelector('button[type="submit"]');
 
-const deleteButtons = document.querySelectorAll('.delete-todo');
-
 
 allTodos = [];
 
+//Check if there are any todos in local storage
+const storedTodos = JSON.parse(localStorage.getItem('todos'));
+
+//If there are todos in local storage, show them when the user enter page
+if (storedTodos) {
+    allTodos = storedTodos;
+    updateTodoList();
+}
+
+/*--------------Helper function to make the todo list dynamic--------------*/
 
 addTodo = () => {
     const todoText = input.value.trim();
@@ -18,25 +26,9 @@ addTodo = () => {
     }   
 }
 
-//Helper function to add a new todo to the list
-updateTodoList = () => {
-    //Clear the list and re-render all changes
-    todoListToday.innerHTML = '';
-
-    //Loop through all todos and render them every time anything changes
-    allTodos.forEach((todo, todoIndex) => {
-
-        //Create a new list item (HTML) for each todo
-        const todoLI = createTodoLI(todo, todoIndex);
-
-        //display the new todo in to the UI
-        todoListToday.appendChild(todoLI);
-    });
-    }
-
-createTodoLI = (todo, todoIndex) => {
+//Function to create a new list item for each todo
+function createTodoLI (todo, todoIndex){
     const li = document.createElement('li');
-    li.setAttribute('data-index', todoIndex);
 
     li.innerHTML = `<li class="todo">
     <input type="checkbox" id="todo-${todoIndex}">
@@ -55,6 +47,26 @@ createTodoLI = (todo, todoIndex) => {
     return li;
 }
 
+//Function to add a new todo to the list
+function updateTodoList() {
+    //Clear the list and re-render all changes
+    todoListToday.innerHTML = '';
+
+    //Loop through all todos and render them every time anything changes
+    allTodos.forEach((todo, todoIndex) => {
+
+        //Create a new list item (HTML) for each todo
+        const todoLI = createTodoLI(todo, todoIndex);
+
+        //display the new todo in to the UI
+        todoListToday.appendChild(todoLI);
+    });
+
+    //Store the todos in local storage
+    localStorage.setItem('todos', JSON.stringify(allTodos));
+}
+
+
 //Function to delete a todo from the list
 deleteTodo = (index) => {
     allTodos.splice(index, 1);
@@ -67,7 +79,7 @@ clearInputField = () => {
   }
 
 
-/*Event listener for the form submission and todo items*/
+/*--------------Event listener for the form submission and delete items--------------*/
 
 //Event listener for adding a todo
 todoForm.addEventListener('submit', (e) => {
@@ -80,8 +92,11 @@ todoForm.addEventListener('submit', (e) => {
 todoListToday.addEventListener('click', (e) => {
     if (e.target.closest('.delete-todo')) {
         const todoItem = e.target.closest('.todo');
-        const todoIndex = todoItem.getAttribute('data-index');
+        const todoIndex = todoItem.children[0].getAttribute('id').split('-')[1];
         deleteTodo(todoIndex);
+
+        //Store our todos again in local storage afer we delteted the todo we wanted to delete
+        localStorage.setItem('todos', JSON.stringify(allTodos));
     }
 });
 
