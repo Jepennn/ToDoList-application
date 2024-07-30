@@ -44,7 +44,7 @@ h1{
     display: flex;
     flex-direction: row;
     width: 100%;
-    margin: 10px 0px 20px 0px;
+    margin: 10px 0px 0px 0px;
     position: relative; 
 }
 input[type="text"] {
@@ -68,7 +68,7 @@ input[type="text"]:focus {
     transform: translateY(-50%); /* Justera för att centrera */
     padding: 12px 20px;
     border-radius: 25px;
-    border: none;
+    border: 2px solid var(--accent-color);
     flex-shrink: 0;
     background-color: var(--accent-color);
     cursor: pointer;
@@ -76,7 +76,7 @@ input[type="text"]:focus {
 #todo-form button:hover {
     background-color: #00e6b4a7;
 }
-#todo-list {
+#todo-list-today {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -133,6 +133,11 @@ input[type="checkbox"]:checked + .custom-checkbox svg {
 input[type="checkbox"]:checked + .custom-checkbox + .todo-text {
     text-decoration: line-through;
     color: var(--secondary-color);
+}
+.todo-text {
+    flex-grow: 1;
+    color: var(--text-color);
+    margin-right: 25px;
 }
 /* design for checkbox start here */
 
