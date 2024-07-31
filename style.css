@@ -63,19 +63,22 @@ input[type="text"]:focus {
 }
 #todo-form button {
     position: absolute; 
-    right: 1px;  
+    right: 3px;  
     top: 50%; /* Center the button */
     transform: translateY(-50%); /* Justera för att centrera */
-    padding: 12px 20px;
+    padding: 15px 25px 15px 25px;
+
     border-radius: 25px;
-    border: 2px solid var(--accent-color);
+    border: none;
     flex-shrink: 0;
     background-color: var(--accent-color);
     cursor: pointer;
 }
 #todo-form button:hover {
-    background-color: #00e6b4a7;
+    background-color: var(--accent-color);
+    opacity: 0.8;
 }
+
 #todo-list-today {
     display: flex;
     flex-direction: column;
@@ -139,7 +142,8 @@ input[type="checkbox"]:checked + .custom-checkbox + .todo-text {
     color: var(--text-color);
     margin-right: 25px;
 }
-/* design for checkbox start here */
+/* design for checkbox ends here */
+
 
 
 
