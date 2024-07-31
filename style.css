@@ -67,11 +67,12 @@ input[type="text"]:focus {
     top: 50%; /* Center the button */
     transform: translateY(-50%); /* Justera för att centrera */
     padding: 15px 25px 15px 25px;
-
     border-radius: 25px;
     border: none;
     flex-shrink: 0;
+
     background-color: var(--accent-color);
+    color: var(--text-color);
     cursor: pointer;
 }
 #todo-form button:hover {
